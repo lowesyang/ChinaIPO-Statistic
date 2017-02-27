@@ -12,7 +12,12 @@
                     <el-submenu index="senior">
                         <template slot="title">高管信息</template>
                         <el-menu-item index="SeniorInfo" :route="{name:'SeniorInfo',params:{page:1}}">基本信息查询</el-menu-item>
-                        <el-menu-item index="SeniorGraph" :route="{name:'SeniorGraph'}">统计图表</el-menu-item>
+                        <el-submenu index="SeniorGraph">
+                            <template slot="title">统计图表</template>
+                            <el-menu-item index="SeniorWithUniv" :route="{name:'SeniorWithUniv'}">985高校的高管分布</el-menu-item>
+                            <el-menu-item index="SeniorWithBirth" :route="{name:'SeniorWithBirth'}">高管年龄分布</el-menu-item>
+                            <el-menu-item index="SeniorWithEdu" :route="{name:'SeniorWithEdu'}">高管学历分布</el-menu-item>
+                        </el-submenu>
                     </el-submenu>
                     <el-menu-item index="statistic">其他统计</el-menu-item>
                 </el-menu>
@@ -48,7 +53,6 @@
     .menuBox{
         width:250px;
         float:left;
-        text-align: center;
     }
     .main{
         padding-left:265px;

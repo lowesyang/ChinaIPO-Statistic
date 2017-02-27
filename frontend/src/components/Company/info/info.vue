@@ -66,7 +66,7 @@
             </el-table>
             <el-pagination
                     small
-                    layout="prev,pager,next,jumper"
+                    layout="total,prev,pager,next,jumper"
                     :page-size="12"
                     :total="numOfPage"
                     :current-page="parseInt(this.$route.params.page)||1"

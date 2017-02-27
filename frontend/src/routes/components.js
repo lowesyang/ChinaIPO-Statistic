@@ -22,8 +22,20 @@ export const SeniorInfo=resolve=>{
     })
 };
 
-export const SeniorGraph=resolve=>{
-    require.ensure(['../components/Senior/graph/graph.vue'],()=>{
-        resolve(require('../components/Senior/graph/graph.vue'));
+export const SeniorWithUniv=resolve=>{
+    require.ensure(['../components/Senior/graph/withUniversity.vue'],()=>{
+        resolve(require('../components/Senior/graph/withUniversity.vue'));
+    })
+};
+
+export const SeniorWithBirth=resolve=>{
+    require.ensure(['../components/Senior/graph/withBirth.vue'],()=>{
+        resolve(require('../components/Senior/graph/withBirth.vue'));
+    })
+};
+
+export const SeniorWithEdu=resolve=>{
+    require.ensure(['../components/Senior/graph/withEducation.vue'],()=>{
+        resolve(require('../components/Senior/graph/withEducation.vue'));
     })
 };
