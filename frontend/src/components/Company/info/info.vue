@@ -25,32 +25,34 @@
                 <el-table-column
                         prop="code"
                         label="股票代码"
-                        min-width="100">
+                        width="95">
                 </el-table-column>
                 <el-table-column
                         prop="company"
                         label="公司名称"
-                        min-width="120">
+                        min-width="110">
                 </el-table-column>
                 <el-table-column
                         prop="owner"
                         label="实际控制人"
                         show-overflow-tooltip="true"
-                        min-width="180">
+                        min-width="140">
                 </el-table-column>
                 <el-table-column
                         prop="legal_representative"
                         label="法人代表"
-                        min-width="100">
+                        min-width="90">
                 </el-table-column>
                 <el-table-column
-                        prop="chairman"
-                        label="董事会主席"
-                        min-width="100">
+                        prop="registered_capital"
+                        label="注册资本(万元)"
+                        min-width="110">
                 </el-table-column>
                 <el-table-column
-                        prop="manager"
-                        label="总经理"
+                        prop="sponsored_broker"
+                        label="主办券商"
+                        min-width="120"
+                        show-overflow-tooltip="true"
                         >
                 </el-table-column>
                 <el-table-column
@@ -66,7 +68,7 @@
             </el-table>
             <el-pagination
                     small
-                    layout="total,prev,pager,next,jumper"
+                    layout="prev,pager,next,jumper,total"
                     :page-size="12"
                     :total="numOfPage"
                     :current-page="parseInt(this.$route.params.page)||1"
@@ -82,6 +84,11 @@
 <style scoped>
     .el-pagination{
         margin-top:10px;
+    }
+</style>
+<style>
+    .el-dialog__body {
+        margin-top:-10px;
     }
 </style>
 
@@ -107,6 +114,10 @@
                     {
                         label:'法定代表人',
                         value:2
+                    },
+                    {
+                        label:'主办券商',
+                        value:3
                     }
                 ],
                 searchForm:{

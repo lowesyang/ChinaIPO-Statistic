@@ -1,21 +1,31 @@
 <template>
     <div>
         <el-card class="box-card" v-loading.body="loading">
-            <div class="withBirth" id="withBirthForAll"></div>
-            <div class="withBirth" id="withBirthForDirector"></div>
-            <div class="withBirth" id="withBirthForPresident"></div>
-            <div class="withBirth" id="withBirthForManager"></div>
-            <div class="withBirth" id="withBirthForZongjian"></div>
-            <div class="withBirth" id="withBirthForSupervisor"></div>
+            <div id="withBirth"></div>
+            <el-select
+                    v-model="seniorTitle"
+                    @change="updateTitle"
+            >
+                <el-option
+                        v-for="item in titleList"
+                        :label="item.label"
+                        :value="item.value"
+                ></el-option>
+            </el-select>
         </el-card>
     </div>
 </template>
 
 <style scoped>
-    .el-card .withBirth{
+    #withBirth{
         display: inline-block;
-        width:32.8%;
+        width:80%;
         height:400px;
+    }
+    .el-select{
+        width:20%;
+        float:right;
+        margin-top:0px;
     }
 </style>
 
@@ -27,18 +37,39 @@
         data(){
             return {
                 loading:false,
-                chartForAll:null,
-                chartForDirector:null,
-                chartForPresident:null,
-                chartForManager:null,
-                chartForZongjian:null,
-                chartForSupervisor:null,
-                birth:['50后','60后','70后','80后','90后'],
+                chart:null,
+                seniorTitle:'All',
+                titleList:[
+                    {
+                        value:'All',
+                        label:'管理层'
+                    },
+                    {
+                        value:'Director',
+                        label:'董事'
+                    },
+                    {
+                        value:'President',
+                        label:'正副总裁'
+                    },
+                    {
+                        value:'Manager',
+                        label:'正副总经理'
+                    },
+                    {
+                        value:'Zongjian',
+                        label:'总监'
+                    },
+                    {
+                        value:'Supervisor',
+                        label:'监事'
+                    }
+                ],
                 initOption:{
                     title: {
 //                        text: '新三板上市公司管理层的年龄分布',
                         left: 'center',
-                        top: 20,
+                        top: 0,
                         textStyle: {
                             color: '#475669',
                             fontSize:16
@@ -61,8 +92,8 @@
                     series: {
                         name: '管理层人数',
                         type: 'pie',
-                        radius: '55%',
-                        center: ['50%', '50%'],
+                        radius: '80%',
+                        center: ['50%', '55%'],
 //                            data: [
 //                                {value: 335, name: '直接访问'},
 //                                {value: 310, name: '邮件营销'},
@@ -93,6 +124,7 @@
                         },
                         itemStyle: {
                             normal: {
+                                color:'#c23531',
                                 shadowBlur: 20,
                                 shadowColor: 'rgba(0, 0, 0, 0.5)'
                             }
@@ -108,26 +140,19 @@
             }
         },
         mounted(){
-            this.getBirthData('All','管理层','#c23531',2000,120000);
-            this.getBirthData('Director','董事','rgb(42,128,185)',500,40000);
-            this.getBirthData('President','正副总裁','rgb(243,156,17)',10,12000);
-            this.getBirthData('Manager','正副总经理','rgb(45,62,80)',20,20000);
-            this.getBirthData('Zongjian','总监','rgb(210,84,0)',10,6000);
-            this.getBirthData('Supervisor','监事','rgb(143,68,173)',500,30000);
+            this.chart=echarts.init(document.getElementById('withBirth'));
+            this.updateTitle(this.seniorTitle);
         },
         methods: {
             // type 获取的title类型
             // 图表标题
-            // color 饼图的颜色
             // min 渐变色最小数值
             // max 渐变色最大数值
-            getBirthData(type,title,color,min,max){
-                this['chartFor'+type]=echarts.init(document.getElementById('withBirthFor'+type));
-
+            getBirthData(type,title,min,max){
                 let option_cache = SS.getItem('withBirthFor'+type);
                 if (option_cache) {
-                    this['chartFor'+type].setOption(option_cache);
-                    return window.addEventListener("resize",this['chartFor'+type].resize);
+                    this.chart.setOption(option_cache);
+                    return window.addEventListener("resize",this.chart.resize);
                 }
                 this.loading = true;
                 axios.get('/senior/statistic/birth/'+type)
@@ -136,8 +161,7 @@
                         if (!res.code) {
                             let result = res.body.result;
                             let option=deepClone(this.initOption);
-                            option.title.text='新三板上市公司['+title+']的年龄分布';
-                            option.series.itemStyle.normal.color=color;
+                            option.title.text='新三板上市公司[ '+title+' ]的年龄分布';
                             option.visualMap.min=min;
                             option.visualMap.max=max;
                             for(let key in result){
@@ -152,14 +176,34 @@
                                 return a.value-b.value
                             });
                             SS.setItem('withBirthFor'+type, option);
-                            this['chartFor'+type].setOption(option)
+                            this.chart.setOption(option)
                         }
                     })
                     .then(() => {
                         this.loading = false;
-                        window.addEventListener("resize",this['chartFor'+type].resize);
+                        window.addEventListener("resize",this.chart.resize);
                     })
+            },
+            updateTitle(type){
+                if(type=='Director'){
+                    this.getBirthData('Director','董事',500,40000);
+                }
+                else if(type=='President'){
+                    this.getBirthData('President','正副总裁',10,15000);
+                }
+                else if(type=='Manager'){
+                    this.getBirthData('Manager','正副总经理',20,20000);
+                }
+                else if(type=='Zongjian'){
+                    this.getBirthData('Zongjian','总监',10,8000);
+                }
+                else if(type=='Supervisor'){
+                    this.getBirthData('Supervisor','监事',500,30000);
+                }
+                else{
+                    this.getBirthData('All','管理层',2000,80000);
                 }
             }
         }
+    }
 </script>

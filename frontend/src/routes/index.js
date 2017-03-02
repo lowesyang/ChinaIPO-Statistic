@@ -7,7 +7,9 @@ import {
     SeniorInfo,
     SeniorWithUniv,
     SeniorWithBirth,
-    SeniorWithEdu
+    SeniorWithEdu,
+    SeniorWithStock,
+    CompanyGeography
 } from "./components";
 
 Vue.use(VueRouter);
@@ -17,6 +19,7 @@ const routes=[
         path:'/',
         name:'App',
         component:App,
+        redirect:'/company/info',
         children:[
             {
                 path:'/company/info',
@@ -26,11 +29,6 @@ const routes=[
                 path:'/company/info/:page',
                 name:'CompanyInfo',
                 component:CompanyInfo,
-            },
-            {
-                path:'/company/graph',
-                name:'CompanyGraph',
-                component:CompanyGraph
             },
             {
                 path:'/senior/info',
@@ -55,6 +53,16 @@ const routes=[
                 path:'/senior/graph/education',
                 name:'SeniorWithEdu',
                 component:SeniorWithEdu
+            },
+            {
+                path:'/senior/graph/stock',
+                name:'SeniorWithStock',
+                component:SeniorWithStock
+            },
+            {
+                path:'/company/graph/geo',
+                name:'CompanyGeography',
+                component:CompanyGeography
             }
         ]
     }

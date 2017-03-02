@@ -8,7 +8,6 @@
 
 <style scoped>
     #withEdu{
-        display: inline-block;
         width:100%;
         height:400px;
     }
@@ -22,7 +21,7 @@
             return {
                 loading:false,
                 chart:null,
-                initOption:{
+                option:{
                     title:{
                         left:'center',
                         text:'新三板上市公司管理层的学历分布'
@@ -52,7 +51,7 @@
                     },
                     series: [
                         {
-                            name: '其他',
+                            name: '董事',
                             type: 'bar',
                             stack: '总量',
                             label: {
@@ -64,7 +63,7 @@
                             data: []
                         },
                         {
-                            name: '大专',
+                            name: '总裁',
                             type: 'bar',
                             stack: '总量',
                             label: {
@@ -76,7 +75,7 @@
                             data: []
                         },
                         {
-                            name: '本科',
+                            name: '经理',
                             type: 'bar',
                             stack: '总量',
                             label: {
@@ -88,7 +87,7 @@
                             data: []
                         },
                         {
-                            name: '硕士',
+                            name: '总监',
                             type: 'bar',
                             stack: '总量',
                             label: {
@@ -100,7 +99,7 @@
                             data: []
                         },
                         {
-                            name: '博士',
+                            name: '监事',
                             type: 'bar',
                             stack: '总量',
                             label: {
@@ -116,12 +115,11 @@
             }
         },
         mounted(){
+            this.chart=echarts.init(document.getElementById('withEdu'));
             this.getEduData();
         },
         methods:{
-            getEduData(type,title){
-                this.chart=echarts.init(document.getElementById('withEdu'));
-
+            getEduData(){
                 let option_cache=SS.getItem('withEdu');
                 if(option_cache){
                     this.chart.setOption(option_cache);
@@ -134,17 +132,16 @@
                         let res=response.data;
                         if(!res.code){
                             let result=res.body.result;
-                            let option=deepClone(this.initOption);
                             for(let edu in result){
                                 if(result.hasOwnProperty(edu)){
-                                    let index=option.yAxis.data.indexOf(edu);
-                                    for(let i=0;i<option.series.length;i++){
-                                        option.series[i].data[index]=result[edu][i];
+                                    let index=this.option.yAxis.data.indexOf(edu);
+                                    for(let i=0;i<this.option.series.length;i++){
+                                        this.option.series[i].data[index]=result[edu][i];
                                     }
                                 }
                             }
-                            SS.setItem('withEdu',option);
-                            this.chart.setOption(option);
+                            SS.setItem('withEdu',this.option);
+                            this.chart.setOption(this.option);
                         }
                     })
                     .then(()=>{

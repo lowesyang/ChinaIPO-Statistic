@@ -10,12 +10,6 @@ export const CompanyInfo=resolve=>{
     })
 };
 
-export const CompanyGraph=resolve=>{
-    require.ensure(['../components/Company/graph/graph.vue'],()=>{
-        resolve(require('../components/Company/graph/graph.vue'));
-    })
-};
-
 export const SeniorInfo=resolve=>{
     require.ensure(['../components/Senior/info/info.vue'],()=>{
         resolve(require('../components/Senior/info/info.vue'));
@@ -37,5 +31,17 @@ export const SeniorWithBirth=resolve=>{
 export const SeniorWithEdu=resolve=>{
     require.ensure(['../components/Senior/graph/withEducation.vue'],()=>{
         resolve(require('../components/Senior/graph/withEducation.vue'));
+    })
+};
+
+export const SeniorWithStock=resolve=>{
+    require.ensure(['../components/Senior/graph/withStock.vue'],()=>{
+        resolve(require('../components/Senior/graph/withStock.vue'));
+    })
+};
+
+export const CompanyGeography=resolve=>{
+    require.ensure(['../components/Company/graph/geography.vue'],()=>{
+        resolve(require('../components/Company/graph/geography.vue'));
     })
 };

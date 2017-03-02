@@ -1,4 +1,3 @@
-# 爬虫脚本
 from urllib import request
 from urllib.error import URLError
 from lxml import etree

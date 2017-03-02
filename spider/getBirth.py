@@ -1,4 +1,3 @@
-# 该脚本用于提取生日中的年份
 import pymysql
 import re
 
