@@ -48,6 +48,7 @@
                         if(!res.code){
                             let result=res.body.result;
                             let _self=this;
+
                             let option={
                                 tooltip : {
                                     trigger: 'axis',

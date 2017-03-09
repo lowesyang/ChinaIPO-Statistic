@@ -229,7 +229,7 @@ var geoCoordMap = {
 
 // 公司注册地址分布
 router.get('/geo/:type',(req,res)=>{
-    let cityData={};
+    let cityData={};    //key: city; value: number
     let type=req.params.type;
     let addr;
     if(type=='register') addr='registered_addr';
@@ -244,8 +244,7 @@ router.get('/geo/:type',(req,res)=>{
             data.forEach((item)=>{
                 for(let city in geoCoordMap){
                     if(item.addr.indexOf(city)>=0){
-                        if(cityData[city]) cityData[city]++;
-                        else cityData[city] = 1;
+                        cityData[city]=(cityData[city] || 0)+1;
                         break;
                     }
                 }
