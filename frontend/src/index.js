@@ -28,7 +28,7 @@ import axios from "axios";
 // Vue.use(ElementUI);
 Vue.use(VueHead);
 
-axios.defaults.baseURL='http://localhost:8088/';
+axios.defaults.baseURL=DEBUG?'http://localhost:8088/':'http://tx.zhelishi.cn:8088';
 axios.defaults.timeout=60000;       //60s timeout
 axios.interceptors.response.use((response)=>{
     // 处理错误码-1的请求

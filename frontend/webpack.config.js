@@ -50,11 +50,9 @@ module.exports={
         }
     },
     plugins:[
-        // new webpack.DefinePlugin({
-        //     'process.env':{
-        //         NODE_ENV:'"production"'
-        //     }
-        // }),
+        new webpack.DefinePlugin({
+            DEBUG:DEBUG
+        }),
         new ExtractTextPlugin("[name].css"),
         new webpack.optimize.CommonsChunkPlugin('vendor',DEBUG?'commons.js':'commons.[chunkhash:5].js'),
         new webpack.optimize.UglifyJsPlugin({
