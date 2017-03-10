@@ -1,11 +1,31 @@
-import Vue from "vue";
+// import Vue from "vue";
 import VueHead from "vue-head";
 import router from "./routes";
-import 'element-ui/lib/theme-default/index.css';
-import ElementUI from "element-ui";
+import "./normalize.css";
+// import {
+//     Form,
+//     formItem,
+//     Input,
+//     Button,
+//     Select,
+//     Option,
+//     Dialog,
+//     Menu,
+//     Submenu,
+//     menuItem,
+//     menuItemGroup,
+//     Table,
+//     tableColumn,
+//     Card,
+//     Message,
+//     Loading,
+//     Pagination,
+//     Tooltip
+// } from "element-ui";
+// import ElementUI from "element-ui";
 import axios from "axios";
 
-Vue.use(ElementUI);
+// Vue.use(ElementUI);
 Vue.use(VueHead);
 
 axios.defaults.baseURL='http://localhost:8088/';

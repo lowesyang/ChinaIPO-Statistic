@@ -1,6 +1,8 @@
 var webpack=require("webpack");
 var HtmlWebpackPlugin=require("html-webpack-plugin");
-var debug=false;
+var ExtractTextPlugin=require("extract-text-webpack-plugin");
+var path=require("path");
+var debug=true;
 
 module.exports={
     entry: {
@@ -8,7 +10,7 @@ module.exports={
         vendor:['vue','vue-router']
     },
     output:{
-        path:'./dist',
+        path:path.join(__dirname,'/dist'),
         filename:debug?'[name].min.js':'[name].[chunkhash:5].min.js',
         publicPath:'/dist/',
         chunkFilename:'[id].[chunkhash:5].chunk.js'
@@ -23,7 +25,7 @@ module.exports={
             },
             {
                 test:/\.css$/,
-                loader:'style!css'
+                loader:debug?'style!css':ExtractTextPlugin.extract('style-loader','css-loader')
             },
             {
                 test:/\.(eot|svg|ttf|woff|woff2)(\?\S*)$/,
@@ -31,7 +33,7 @@ module.exports={
             },
             {
                 test:/\.(png|jpe?g|svg|gif)(\?\S*)?$/,
-                loader:'file-loader',
+                loader:'url?limit=8192',
                 query:{
                     name:'[name].[ext]?[hash]'
                 }
@@ -49,15 +51,25 @@ module.exports={
         }
     },
     plugins:[
-        new webpack.DefinePlugin({
-            'process.env':{
-                NODE_ENV:'"production"'
+        // new webpack.DefinePlugin({
+        //     'process.env':{
+        //         NODE_ENV:'"production"'
+        //     }
+        // }),
+        new ExtractTextPlugin("[name].css"),
+        new webpack.optimize.CommonsChunkPlugin('vendor',debug?'commons.js':'commons.[chunkhash:5].js'),
+        new webpack.optimize.UglifyJsPlugin({
+            compress: {
+                warnings: false
             }
         }),
-        new webpack.optimize.CommonsChunkPlugin('vendor',debug?'commons.js':'commons.[chunkhash:5].js'),
         new HtmlWebpackPlugin({
-            template:'index.html',
-            inject:'body'
+            template:path.resolve(__dirname,'index.html'),
+            inject:true,
+            minify:{
+                removeComments:true,
+                collapseWhitespace:true
+            }
         })
     ]
 }

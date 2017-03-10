@@ -179,23 +179,24 @@
                 this[type+'Loading']=true;
 
 //                //本地拿缓存
-//                let option_cache=SS.getItem(type+'Geo');
-//                if(option_cache){
-//                    option_cache.tooltip.formatter=(params)=>{
-//                        let res=params.name+'<br/>';
-//                        res+=params.seriesName+'：'+params.value[2];
-//                        return res;
-//                    };
-//                    option_cache.series[0].symbolSize=option_cache.series[1].symbolSize=(val)=>{
-//                        return Math.sqrt(val[2]);
-//                    }
-//                    // 防止setOption时主线程卡死
-//                    setTimeout(()=>{
-//                        this['chart'+type].setOption(option_cache);
-//                        this[type+'Loading']=false;
-//                    },0)
-//                    return window.addEventListener('resize',this['chart'+type].resize)
-//                }
+                let option_cache=SS.getItem(type+'Geo');
+                if(option_cache){
+                    option_cache.tooltip.formatter=(params)=>{
+                        let res=params.name+'<br/>';
+                        let name=params.componentSubType=='bar'?params.name:params.seriesName;
+                        res+=name+'：'+ (Array.isArray(params.value)?params.value[2]:params.value);
+                        return res;
+                    };
+                    option_cache.series[0].symbolSize=option_cache.series[1].symbolSize=(val)=>{
+                        return Math.sqrt(val[2]);
+                    }
+                    // 防止setOption时主线程卡死
+                    setTimeout(()=>{
+                        this['chart'+type].setOption(option_cache);
+                        this[type+'Loading']=false;
+                    },0)
+                    return window.addEventListener('resize',this['chart'+type].resize)
+                }
 
                 axios.get('/company/geo/'+type)
                     .then((response)=>{

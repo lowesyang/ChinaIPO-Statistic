@@ -427,19 +427,3 @@ textarea {
 .fl{float:left;}
 .fr{float:right;}
 .cl{clear:both;}
-
-.fade-enter,
-.fade-leave,
-.fade-enter-active,
-.fade-leave-active{
-    width:100%;
-    position:absolute;
-}
-
-.el-dialog{
-    min-width:300px;
-    max-width:800px;
-}
-.el-icon-d-arrow-left,.el-icon-d-arrow-right{
-    margin-top:-3px;
-}
