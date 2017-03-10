@@ -1,6 +1,6 @@
 var webpack=require("webpack");
 var HtmlWebpackPlugin=require("html-webpack-plugin");
-var debug=true;
+var debug=false;
 
 module.exports={
     entry: {
@@ -9,7 +9,7 @@ module.exports={
     },
     output:{
         path:'./dist',
-        filename:'[name].min.js',
+        filename:debug?'[name].min.js':'[name].[chunkhash:5].min.js',
         publicPath:'/dist/',
         chunkFilename:'[id].[chunkhash:5].chunk.js'
     },
