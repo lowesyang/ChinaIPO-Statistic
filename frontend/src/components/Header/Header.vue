@@ -56,7 +56,7 @@
             }
         },
         mounted(){
-            particlesJS.load('headParticles','src/components/Header/particles.json')
+            particlesJS.load('headParticles','//src.zhelishi.cn/particles.json');
         }
     }
 </script>

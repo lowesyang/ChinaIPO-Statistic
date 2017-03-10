@@ -2,7 +2,7 @@ var webpack=require("webpack");
 var HtmlWebpackPlugin=require("html-webpack-plugin");
 var ExtractTextPlugin=require("extract-text-webpack-plugin");
 var path=require("path");
-var debug=false;
+var DEBUG=false;
 
 module.exports={
     entry: {
@@ -11,9 +11,8 @@ module.exports={
     },
     output:{
         path:path.join(__dirname,'/dist'),
-        filename:debug?'[name].min.js':'[name].[chunkhash:5].min.js',
-        publicPath:'/dist/',
-        chunkFilename:'[id].[chunkhash:5].chunk.js'
+        filename:DEBUG?'[name].min.js':'[name].[chunkhash:5].min.js',
+        chunkFilename:'[id].[chunkhash:5].chunk.js',
     },
     module:{
         loaders:[
@@ -25,7 +24,7 @@ module.exports={
             },
             {
                 test:/\.css$/,
-                loader:debug?'style!css':ExtractTextPlugin.extract('style-loader','css-loader')
+                loader:DEBUG?'style!css':ExtractTextPlugin.extract('style-loader','css-loader')
             },
             {
                 test:/\.(eot|svg|ttf|woff|woff2)(\?\S*)$/,
@@ -57,14 +56,14 @@ module.exports={
         //     }
         // }),
         new ExtractTextPlugin("[name].css"),
-        new webpack.optimize.CommonsChunkPlugin('vendor',debug?'commons.js':'commons.[chunkhash:5].js'),
+        new webpack.optimize.CommonsChunkPlugin('vendor',DEBUG?'commons.js':'commons.[chunkhash:5].js'),
         new webpack.optimize.UglifyJsPlugin({
             compress: {
                 warnings: false
             }
         }),
         new HtmlWebpackPlugin({
-            template:path.resolve(__dirname,'index.html'),
+            template:path.join(__dirname,'index.html'),
             inject:true,
             minify:{
                 removeComments:true,
