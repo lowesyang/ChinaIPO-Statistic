@@ -21,7 +21,7 @@ handler.on('error',(err)=>{
 
 handler.on('push',(ev)=>{
     console.log("Received a push event for %s", ev.payload.repository.name);
-    run_cmd('sh',['./autoDeply.sh'],()=>{
+    run_cmd('sh',['./autoDeploy.sh'],()=>{
         console.log('run sh completed!');
     });
 });
