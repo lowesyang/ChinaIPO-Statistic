@@ -10,7 +10,7 @@ echo "pulling source code..."
 git pull origin master
 git checkout master
 echo "Pull finished"
-cd $DeployPath
+cd $FrontPath
 cnpm install
 webpack -p
 echo "webpack build completed"
