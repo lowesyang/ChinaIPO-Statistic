@@ -197,6 +197,13 @@
                 this.dialog.name=this.seniorList[index].name;
                 this.dialog.experience=this.seniorList[index].experience;
             }
+        },
+        head:{
+            title(){
+                return {
+                    inner:'高管信息查询'
+                }
+            }
         }
     }
 </script>

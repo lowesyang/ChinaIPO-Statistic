@@ -164,6 +164,13 @@
                 this.dialog.company=this.companyList[index].company;
                 this.dialog.profile=this.companyList[index].profile;
             }
+        },
+        head:{
+            title(){
+                return {
+                    inner:'企业信息查询'
+                }
+            }
         }
     }
 </script>
