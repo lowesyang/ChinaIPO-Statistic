@@ -1,16 +1,21 @@
 #!/bin/sh
 
 unset GIT_DIR
-DeployPath=/yjdata/www/thinkphp/chinaipo/frontend
+FrontPath=/yjdata/www/thinkphp/chinaipo/frontend
+BackPath=/yjdata/www/thinkphp/chinaipo/backend
 
 echo "======================"
-cd $DeployPath
-
 echo "Start deployment"
 echo "pulling source code..."
 git pull origin master
 git checkout master
-echo "Finished"
+echo "Pull finished"
+cd $DeployPath
+cnpm install
+webpack -p
+echo "webpack build completed"
+cd $BackPath
+cnpm install
 pm2 reload chinaipo
 echo "pm2 reload completed"
 
