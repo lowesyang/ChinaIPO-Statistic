@@ -3,7 +3,6 @@ import VueRouter from "vue-router";
 import {
     App,
     CompanyInfo,
-    CompanyGraph,
     SeniorInfo,
     SeniorWithUniv,
     SeniorWithBirth,
