@@ -129,28 +129,32 @@
                         value:1
                     },
                     {
-                        label:'职位',
+                        label:'毕业院校',
                         value:2
                     },
                     {
-                        label:'公司股票代码',
+                        label:'职位',
                         value:3
                     },
                     {
-                        label:'学历',
+                        label:'公司股票代码',
                         value:4
                     },
                     {
-                        label:'生日',
+                        label:'学历',
                         value:5
                     },
                     {
-                        label:'持股数',
+                        label:'生日',
                         value:6
                     },
                     {
-                        label:'持股比例',
+                        label:'持股数',
                         value:7
+                    },
+                    {
+                        label:'持股比例',
+                        value:8
                     }
                 ],
                 dialogVisible:false,

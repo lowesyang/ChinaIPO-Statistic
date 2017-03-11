@@ -42,8 +42,21 @@
                     tooltip : {
                         trigger: 'item'
                     },
-                    toolBox:{
-
+                    toolbox:{
+                        right:'20',
+                        feature:{
+                            saveAsImage:{
+                                type:'png',
+                            }
+                        },
+                        iconStyle: {
+                            normal: {
+                                borderColor: '#fff'
+                            },
+                            emphasis: {
+                                borderColor: '#b1e4ff'
+                            }
+                        }
                     },
                     legend: {
                         orient: 'vertical',
@@ -178,7 +191,7 @@
             getGeoData(type,title){
                 this[type+'Loading']=true;
 
-//                //本地拿缓存
+                //本地拿缓存
                 let option_cache=SS.getItem(type+'Geo');
                 if(option_cache){
                     option_cache.tooltip.formatter=(params)=>{
@@ -208,6 +221,7 @@
                         //设置图表的option
                         option.title.text='新三板企业'+title+'地址分布';
                         option.legend.data=[title+'企业数量'];
+                        option.toolbox.feature.saveAsImage.name=option.title.text;
                         option.series[0].data=this.convertData(cityData);
                         option.series[0].name=option.series[1].name=title+'企业数量';
                         option.series[1].data=this.convertData(cityData.sort(function (a, b) {
@@ -258,6 +272,13 @@
                 }
                 return res;
             }
-    }
+        },
+        head:{
+            title(){
+                return {
+                    inner:'企业地址分布'
+                }
+            }
+        }
     }
 </script>

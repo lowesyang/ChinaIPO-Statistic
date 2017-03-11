@@ -32,6 +32,14 @@
                             type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
                         }
                     },
+                    toolbox: {
+                        show: true,
+                        feature: {
+                            magicType: {type: ['line', 'bar']},
+                            saveAsImage: {}
+                        },
+                        right:'20'
+                    },
                     legend: {
                         top:'bottom',
                         data: ['董事','总裁','经理','总监','监事']
@@ -148,6 +156,13 @@
                         this.loading=false;
                         window.addEventListener("resize",this.chart.resize);
                     })
+            }
+        },
+        head:{
+            title(){
+                return {
+                    inner:'高管学历分布'
+                }
             }
         }
     }

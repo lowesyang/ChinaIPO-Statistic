@@ -15,12 +15,13 @@ router.get('/list/:page/:type/:keywords',(req,res)=>{
     switch(type){
         case '0': type='name';break;
         case '1':type='company';break;
-        case '2':type='title';break;
-        case '3':type='code';break;
-        case '4':type='education';break;
-        case '5':type='birth';break;
-        case '6':type='hold_stocks';break;
-        case '7':type='stock_ratio';break;
+        case '2':type='experience';break;
+        case '3':type='title';break;
+        case '4':type='code';break;
+        case '5':type='education';break;
+        case '6':type='birth';break;
+        case '7':type='hold_stocks';break;
+        case '8':type='stock_ratio';break;
         default:type='name';break;
     }
 

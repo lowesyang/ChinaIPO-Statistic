@@ -56,6 +56,13 @@
                                         type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
                                     }
                                 },
+                                toolbox: {
+                                    show: true,
+                                    feature: {
+                                        magicType: {type: ['line', 'bar']},
+                                        saveAsImage: {}
+                                    },
+                                },
                                 legend: {
                                     data:['董事','正副总裁','正副总经理','总监','监事']
                                 },
@@ -113,6 +120,13 @@
                     .then(()=>{
                         this.loading=false;
                     })
+            }
+        },
+        head:{
+            title(){
+                return {
+                    inner:'985高校高管分布'
+                }
             }
         }
     }

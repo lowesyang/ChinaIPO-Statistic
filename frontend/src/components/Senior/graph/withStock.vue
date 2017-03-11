@@ -35,6 +35,14 @@
                             type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
                         }
                     },
+                    toolbox: {
+                        show: true,
+                        feature: {
+                            magicType: {type: ['line', 'bar']},
+                            saveAsImage: {}
+                        },
+                        right:'20'
+                    },
                     legend:{
                         left:'5%',
                         top:'8%',
@@ -113,6 +121,13 @@
                         this.loading=false;
                         window.addEventListener("resize",this.chart.resize);
                     })
+            }
+        },
+        head:{
+            title(){
+                return {
+                    inner:'高管股份分布'
+                }
             }
         }
     }

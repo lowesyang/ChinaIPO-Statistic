@@ -80,7 +80,13 @@
                         trigger: 'item',
                         formatter: "{a} <br/>{b} : {c} ({d}%)"
                     },
-
+                    toolbox: {
+                        show: true,
+                        feature: {
+                            saveAsImage: {}
+                        },
+                        right:'20'
+                    },
                     visualMap: {
                         show: false,
 //                        min: 2000,
@@ -202,6 +208,13 @@
                 }
                 else{
                     this.getBirthData('All','管理层',2000,80000);
+                }
+            }
+        },
+        head:{
+            title(){
+                return {
+                    inner:'高管年龄分布'
                 }
             }
         }
