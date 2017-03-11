@@ -75,7 +75,7 @@
         z-index:2;
         width:250px;
         float:left;
-        padding-bottom:20px;
+        padding-bottom:100px;
     }
     .main{
         padding-left:265px;
