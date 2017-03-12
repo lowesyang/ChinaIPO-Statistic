@@ -17,6 +17,7 @@
                 </el-form>
             </div>
             <div class="warning">高管信息数据量较大，请手动搜索  |  部分高管一人多职，将显示成两条记录</div>
+            <div class="res" v-show="this.result.keywords">{{this.result.resLabel}}包含<span class="keywords">{{this.result.keywords}}</span>的结果</div>
             <div class="list" v-loading.body="loading">
                 <el-table
                         :data="seniorList"
@@ -103,6 +104,14 @@
         margin-bottom:10px;
         color:#F7BA2A;
     }
+    .res{
+        font-size:14px;
+        margin-bottom:10px;
+        color:#8492A6;
+    }
+    .res .keywords{
+        color:#1F2D3D;
+    }
 </style>
 
 <script>
@@ -118,6 +127,10 @@
                 searchForm:{
                     keywords:'',
                     type:0
+                },
+                result:{
+                    typeLabel:'',
+                    keywords:''
                 },
                 typeList:[
                     {
@@ -184,9 +197,11 @@
                         message:'院校格式不正确,请输入xxx大学(学院、学校)'
                     })
                 }
+                this.result.keywords=this.searchForm.keywords;
+                this.result.resLabel=this.typeList[this.searchForm.type].label;
                 this.loading=true;
                 let page=this.$route.params.page||1;
-                axios.get('/senior/list/'+page+'/'+this.searchForm.type+'/'+this.searchForm.keywords)
+                axios.get('/senior/list/'+page+'/'+this.searchForm.type+'/'+this.searchForm.keywords+'?t='+Date.now())
                     .then((response) => {
                         let res = response.data;
                         if (res.code == 0) {
