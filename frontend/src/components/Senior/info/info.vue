@@ -64,8 +64,8 @@
                     </el-table-column>
                     <el-table-column
                             prop="stock_ratio"
-                            label="持股比例"
-                            min-width="100"
+                            label="持股比例(%)"
+                            min-width="120"
                     >
                     </el-table-column>
                     <el-table-column
