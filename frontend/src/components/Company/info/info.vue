@@ -147,7 +147,7 @@
             getCompanyList(){
                 this.loading=true;
                 let page=this.$route.params.page||1;
-                axios.get('/company/list/'+page+'/'+this.searchForm.type+'/'+(this.searchForm.keywords||'null'))
+                axios.get('/company/list/'+page+'/'+this.searchForm.type+'/'+this.searchForm.keywords)
                     .then((response) => {
                         let res = response.data;
                         if (res.code == 0) {

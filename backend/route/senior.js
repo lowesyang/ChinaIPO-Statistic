@@ -1,7 +1,7 @@
 let router=require("express").Router();
 let query=require("../config").query;
 
-router.get('/list/:page/:type/:keywords',(req,res)=>{
+router.get('/list/:page/:type/:keywords?',(req,res)=>{
     let start=(parseInt(req.params.page)-1)*12;
     let end=start+12;
     let type=req.params.type;

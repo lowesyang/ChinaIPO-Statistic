@@ -156,6 +156,9 @@
                         this.loading=false;
                         window.addEventListener("resize",this.chart.resize);
                     })
+                    .catch((err)=>{
+                        this.loading=false;
+                    })
             }
         },
         head:{

@@ -258,6 +258,9 @@
                     this[type+'Loading']=false;
                     window.addEventListener("resize",this['chart'+type].resize);
                 })
+                .catch((err)=>{
+                        this.loading=false;
+                })
             },
             convertData(data) {
                 let res = [];

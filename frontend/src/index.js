@@ -33,7 +33,10 @@ axios.defaults.timeout=60000;       //60s timeout
 axios.interceptors.response.use((response)=>{
     // 处理错误码-1的请求
     if(response.data.code==-1){
-        return Promise.reject(response.data.msg)
+        Vue.prototype.$message({
+            type:'error',
+            message:response.data.msg
+        });
     }
     return response;
 },(err)=>{

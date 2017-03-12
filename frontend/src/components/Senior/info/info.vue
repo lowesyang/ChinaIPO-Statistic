@@ -178,6 +178,12 @@
                         message:'关键词不能为空!'
                     })
                 }
+                if(this.searchForm.type==2 && !/^.*(大学)$|(学院)$|(学校)$/.test(this.searchForm.keywords)){
+                    return this.$message({
+                        type:'warning',
+                        message:'院校格式不正确,请输入xxx大学(学院、学校)'
+                    })
+                }
                 this.loading=true;
                 let page=this.$route.params.page||1;
                 axios.get('/senior/list/'+page+'/'+this.searchForm.type+'/'+this.searchForm.keywords)
@@ -191,6 +197,10 @@
                     .then(()=>{
                         this.loading=false;
                     })
+                    .catch((err)=>{
+                        this.loading=false;
+                    })
+
             },
             showInfo(index){
                 this.dialogVisible=!this.dialogVisible;

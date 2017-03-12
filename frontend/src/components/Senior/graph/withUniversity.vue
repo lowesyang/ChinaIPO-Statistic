@@ -120,6 +120,9 @@
                     .then(()=>{
                         this.loading=false;
                     })
+                    .catch((err)=>{
+                        this.loading=false;
+                    })
             }
         },
         head:{
