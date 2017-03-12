@@ -158,6 +158,9 @@
                     .then(()=>{
                         this.loading=false;
                     })
+                    .catch(()=>{
+                        this.loading=false;
+                    })
             },
             showProfile(index){
                 this.dialogVisible=!this.dialogVisible;
