@@ -5,7 +5,7 @@ router.get('/list/:page/:type/:keywords?',(req,res)=>{
     let start=(parseInt(req.params.page)-1)*12;
     let end=start+12;
     let type=req.params.type;
-    let keywords=req.params.keywords||'';
+    let keywords=(req.params.keywords||'').trim();
     switch(type){
         case '0': type='code';break;
         case '1':type='company';break;
