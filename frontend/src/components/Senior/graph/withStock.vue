@@ -39,7 +39,9 @@
                         show: true,
                         feature: {
                             magicType: {type: ['line', 'bar']},
-                            saveAsImage: {}
+                            saveAsImage: {
+                                pixelRatio:5
+                            }
                         },
                         right:'20'
                     },

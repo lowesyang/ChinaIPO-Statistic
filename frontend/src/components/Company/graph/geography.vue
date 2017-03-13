@@ -45,8 +45,8 @@
                     toolbox:{
                         right:'20',
                         feature:{
-                            saveAsImage:{
-                                type:'png',
+                            saveAsImage: {
+                                pixelRatio:5
                             }
                         },
                         iconStyle: {

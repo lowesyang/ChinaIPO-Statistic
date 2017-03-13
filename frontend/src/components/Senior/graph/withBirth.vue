@@ -83,7 +83,9 @@
                     toolbox: {
                         show: true,
                         feature: {
-                            saveAsImage: {}
+                            saveAsImage: {
+                                pixelRatio:5
+                            }
                         },
                         right:'20'
                     },
