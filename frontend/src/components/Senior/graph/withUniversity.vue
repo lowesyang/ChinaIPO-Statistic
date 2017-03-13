@@ -1,7 +1,6 @@
 <template>
     <div>
         <el-card class="box-card" v-loading.body="loading">
-            <div class="title">985高校中校友在新三板上市公司管理层的人数统计</div>
             <div id="withUniversity"></div>
         </el-card>
     </div>
@@ -10,11 +9,6 @@
 <style scoped>
     #withUniversity{
         height:400px;
-    }
-    .title{
-        text-align: center;
-        font-size:16px;
-        margin-bottom:10px;
     }
 </style>
 
@@ -50,6 +44,13 @@
                             let _self=this;
 
                             let option={
+                                title:{
+                                    left:'center',
+                                    text:'985高校中校友在新三板上市公司管理层的人数统计',
+                                    subtextStyle:{
+                                        fontSize:14
+                                    }
+                                },
                                 tooltip : {
                                     trigger: 'axis',
                                     axisPointer : {            // 坐标轴指示器，坐标轴触发有效
@@ -62,8 +63,10 @@
                                         magicType: {type: ['line', 'bar']},
                                         saveAsImage: {}
                                     },
+                                    right:'20'
                                 },
                                 legend: {
+                                    top:'8%',
                                     data:['董事','正副总裁','正副总经理','总监','监事']
                                 },
                                 xAxis: {

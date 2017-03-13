@@ -24,9 +24,11 @@ import "./normalize.css";
 // } from "element-ui";
 // import ElementUI from "element-ui";
 import axios from "axios";
+import {Promise} from "es6-promise";
 
 // Vue.use(ElementUI);
 Vue.use(VueHead);
+window.Promise=Promise;
 
 axios.defaults.baseURL=DEBUG?'http://localhost:8088/':'http://tx.zhelishi.cn:8088';
 axios.defaults.timeout=60000;       //60s timeout
