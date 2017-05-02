@@ -2,7 +2,7 @@
 新三板企业相关数据分析
 
 ### Demo
-[ChinaIPO-Statistic](http://tx.zhelishi.cn:2017)
+[ChinaIPO-Statistic](http://ipo.zhelishi.cn)
 
 ### Features
 - [x] 新三板上市公司信息查询与筛选
